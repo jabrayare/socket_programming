@@ -1,17 +1,36 @@
-from calendar import c
-from nis import cat
 import socket
 import time
 from List_Manager import ListManager
 import threading
+import logging
+from configparser import ConfigParser
+import ast
 
-myList = ListManager()
+
+config = ConfigParser()
+configFile = 'config.ini'
+config.read(configFile)
+
+"""Time req/res Info"""
+
+# Logging configuration
+logging.basicConfig(filename="serverLogs.log", format='%(asctime)s %(message)s', filemode='w')
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+# List of valid commands
 valid_list_commands = ["add", "list", "delete", "replace", "exit", "help" ]
+active_threads = []
 
-HOST = "localhost"
-PORT = 9999  
-
-def client_connection(clientsocket,addr):
+def client_connection(clientsocket,addr, myList):
+  """
+  Handles client connections
+  arguments:
+    clientsocket:
+    addr:
+    myList: 
+  
+  """
   client_name = clientsocket.recv(1024).decode()
   currentTime = time.ctime(time.time()) + "\r\n"
   clientsocket.send(currentTime.encode('ascii'))
@@ -80,10 +99,28 @@ def client_connection(clientsocket,addr):
           clientsocket.send(bytes("error", 'utf-8'))
   clientsocket.close()
 
+# server setup.
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+HOST = ast.literal_eval(config.get('DEFAULT', 'HOST'))
+PORT = int(config['DEFAULT']['PORT'])
 server.bind((HOST, PORT))
-server.listen(5)
-print(f"Waiting for connection on {(HOST, PORT)}...")
-clientsocket,addr = server.accept()  
-client_connection(clientsocket, addr)
-# threading.Thread(target=client_connection, args=(clientsocket, addr))      
+ 
+# client_connection(clientsocket, addr)
+while True:
+  server.listen(5)
+  logger.info(f"Waiting for connection on {(HOST, PORT)}...")
+  # logger.info("Waiting for connection...")
+  clientsocket,addr = server.accept() 
+  myList = ListManager()
+  thread = threading.Thread(target=client_connection, args=(clientsocket, addr, myList))  
+  thread.start() 
+  active_threads.append(thread)
+  active_connections = threading.activeCount()-1
+  if active_connections <= 0:
+    break
+  print(f"Active connections: {active_connections}")
+
+for t in active_threads:
+  t.join()
+print("No more active connections!")
+server.close()   

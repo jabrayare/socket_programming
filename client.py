@@ -1,14 +1,18 @@
-import enum
-from pydoc import cli
 import socket
 import time
 from List_Manager import ListManager
+from configparser import ConfigParser
+import ast
+
+config = ConfigParser()
+configFile = 'config.ini'
+config.read(configFile)
+
+HOST = ast.literal_eval(config.get('DEFAULT', 'HOST'))
+PORT = int(config['DEFAULT']['PORT'])
 
 
 LMananger = ListManager()
-
-PORT = 9999
-HOST = "localhost"
 
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
@@ -20,8 +24,9 @@ client.send(bytes(name, 'utf-8'))
 tm = client.recv(1024)                                     
 
 print("Connected to the server at %s" % tm.decode('ascii'))
-client_connected = True
 LMananger.display_valid_commands()
+
+client_connected = True
 while client_connected:
   command = input("command: ")
   list_cmd = command.split(',')
