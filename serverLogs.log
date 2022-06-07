@@ -1,3 +1,31 @@
-2022-04-03 01:23:32,476 Waiting for connection on ('localhost', 9999)...
-2022-04-03 01:24:02,495 Waiting for connection on ('localhost', 9999)...
-2022-04-03 01:24:12,048 Waiting for connection on ('localhost', 9999)...
+Sun Apr 10 16:50:56 2022 | RESPONSE |  INFO | Waiting for connection on ('localhost', 9999)... | 
+Sun Apr 10 16:50:56 2022 | RESPONSE |  INFO | Active connections: 1 | 
+Sun Apr 10 16:51:16 2022 | RESPONSE |  INFO | Got a connection from `Jabros` on ('127.0.0.1', 58637) | SENT
+Sun Apr 10 16:51:16 2022 | REQUEST |  INFO | Jabros: Recieved command is help | RECIEVED
+Sun Apr 10 16:51:16 2022 | RESPONSE |  INFO | Jabros: Help Command detected! [`help`] | SENT
+Sun Apr 10 16:51:57 2022 | REQUEST |  INFO | Jabros: Recieved command is add | RECIEVED
+Sun Apr 10 16:51:57 2022 | RESPONSE |  INFO | Jabros: added Item successfully | SENT
+Sun Apr 10 16:52:24 2022 | REQUEST |  INFO | Jabros: Recieved command is list | RECIEVED
+Sun Apr 10 16:52:39 2022 | REQUEST |  INFO | Jabros: Recieved command is replace | RECIEVED
+Sun Apr 10 16:52:39 2022 | RESPONSE |  INFO | Jabros: replaced item successfully | SENT
+Sun Apr 10 16:53:16 2022 | REQUEST |  INFO | Jabros: Recieved command is list | RECIEVED
+Sun Apr 10 16:53:30 2022 | REQUEST |  INFO | Jabros: Recieved command is delete | RECIEVED
+Sun Apr 10 16:53:30 2022 | RESPONSE |  INFO | Jabros: deleted Item successfully | SENT
+Sun Apr 10 16:53:44 2022 | REQUEST |  INFO | Jabros: Recieved command is list | RECIEVED
+Sun Apr 10 16:53:44 2022 | RESPONSE |  INFO | Jabros: The list is empty | SENT
+Sun Apr 10 16:54:01 2022 | REQUEST |  INFO | Jabros: Recieved command is exit | RECIEVED
+Sun Apr 10 16:54:01 2022 | RESPONSE |  WARNING | Jabros: Quits, Good Bye. | SENT
+Sun Apr 10 16:51:12 2022 | RESPONSE |  INFO | Active connections: 1 | 
+Sun Apr 10 16:54:47 2022 | RESPONSE |  INFO | Got a connection from `Kaka` on ('127.0.0.1', 58779) | SENT
+Sun Apr 10 16:54:45 2022 | RESPONSE |  INFO | Active connections: 2 | 
+Sun Apr 10 16:55:00 2022 | RESPONSE |  INFO | Got a connection from `Jabros` on ('127.0.0.1', 58814) | SENT
+Sun Apr 10 16:55:00 2022 | REQUEST |  INFO | Jabros: Recieved command is add | RECIEVED
+Sun Apr 10 16:55:00 2022 | RESPONSE |  INFO | Jabros: added Item successfully | SENT
+Sun Apr 10 16:55:37 2022 | REQUEST |  INFO | Jabros: Recieved command is add | RECIEVED
+Sun Apr 10 16:55:37 2022 | RESPONSE |  ERROR | Jabros: adding Item failed | SENT
+Sun Apr 10 16:55:46 2022 | REQUEST |  INFO | Jabros: Recieved command is hello | RECIEVED
+Sun Apr 10 16:55:46 2022 | RESPONSE |  ERROR | Jabros: Invalid Command detected! [`hello`] | RECIEVED
+Sun Apr 10 16:55:58 2022 | REQUEST |  INFO | Jabros: Recieved command is exit | RECIEVED
+Sun Apr 10 16:55:58 2022 | RESPONSE |  WARNING | Jabros: Quits, Good Bye. | SENT
+Sun Apr 10 16:54:47 2022 | REQUEST |  INFO | Kaka: Recieved command is exit | RECIEVED
+Sun Apr 10 16:54:47 2022 | RESPONSE |  WARNING | Kaka: Quits, Good Bye. | SENT

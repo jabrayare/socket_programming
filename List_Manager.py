@@ -1,6 +1,7 @@
+"""
+@author: Jibril Mohamed
+"""
 from typing import  List
-
-
 
 class ListManager:
   def __init__(self) -> None:
